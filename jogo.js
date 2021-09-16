@@ -28,10 +28,28 @@ function posicionaRandomico() {
 
     var mosquito = document.createElement('img');
     mosquito.src = "imagens/mosquito.png";
-    mosquito.className = "mosquito1";
+    mosquito.className = tamanhoMosquito();
     mosquito.style.left = posicaox + "px";
     mosquito.style.top = posicaoy + "px";
     mosquito.style.position = "absolute";
 
     document.body.appendChild(mosquito);
+
+    tamanhoMosquito();
+}
+
+//Gera tamanhos randomicos para os mosquitos
+function tamanhoMosquito() {
+    var sizeMultipler = Math.floor(Math.random() * 4);
+    console.log(sizeMultipler);
+    switch (sizeMultipler) {
+        case 0:
+            return 'mosquito1';
+        case 1:
+            return 'mosquito2';
+        case 2:
+            return 'mosquito3';
+        case 3:
+            return 'mosquito4';
+    }
 }
