@@ -1,6 +1,6 @@
 var altura = 0;
 var largura = 0;
-
+var vidas = 1;
 
 /*
  * Definição do tamanho da tela útil pro jogo, permitindo que a mesma possa se adaptar ao display em que está sendo exibido.
@@ -17,7 +17,15 @@ function posicionaRandomico() {
 
     //Testa a existência do mosquito e remove caso exista
     if (document.getElementById('mosquito')) {
+
         document.getElementById('mosquito').remove();
+
+        if (vidas > 3) {
+            window.location.href = 'fim_do_jogo.html';
+        } else {
+            document.getElementById('v' + vidas).src = 'imagens/coracao_vazio.png';
+            vidas++;
+        }
     }
 
     /* Gera randomicamente as posições X e Y onde o mosquito será exibido.*/
@@ -34,6 +42,9 @@ function posicionaRandomico() {
     mosquito.style.top = posicaoy + "px";
     mosquito.style.position = "absolute";
     mosquito.id = 'mosquito';
+    mosquito.onclick = function() {
+        this.remove();
+    };
 
     document.body.appendChild(mosquito);
 
