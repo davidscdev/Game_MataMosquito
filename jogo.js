@@ -15,6 +15,11 @@ ajustaTamanhoPalcoJogo();
 /* Insere randomicamente o mosquito na tela do jogo */
 function posicionaRandomico() {
 
+    //Testa a existência do mosquito e remove caso exista
+    if (document.getElementById('mosquito')) {
+        document.getElementById('mosquito').remove();
+    }
+
     /* Gera randomicamente as posições X e Y onde o mosquito será exibido.*/
     var posicaox = Math.floor(Math.random() * largura) - 90; // - 90 para que toda a extensão da imagem apreça na tela.
     var posicaoy = Math.floor(Math.random() * altura) - 90; // - 90 para que toda a extensão da imagem apreça na tela.
@@ -28,6 +33,7 @@ function posicionaRandomico() {
     mosquito.style.left = posicaox + "px";
     mosquito.style.top = posicaoy + "px";
     mosquito.style.position = "absolute";
+    mosquito.id = 'mosquito';
 
     document.body.appendChild(mosquito);
 
