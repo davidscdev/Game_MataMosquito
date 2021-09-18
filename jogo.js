@@ -1,6 +1,8 @@
 var altura = 0;
 var largura = 0;
 var vidas = 1;
+var tempo = 25;
+var pontuacao = 0;
 
 /*
  * Definição do tamanho da tela útil pro jogo, permitindo que a mesma possa se adaptar ao display em que está sendo exibido.
@@ -10,7 +12,20 @@ function ajustaTamanhoPalcoJogo() {
     largura = window.innerWidth;
 }
 
+/*var cronometro = setInterval(function() {
+    tempo -= 1;
+    if (tempo < 0) {
+        clearInterval(cronometro);
+        clearInterval(criaMosquito);
+        window.location.href = 'vitoria.html';
+    } else {
+        document.getElementById('cronometro').innerHTML = tempo;
+    }
+
+}, 1000);*/
+
 ajustaTamanhoPalcoJogo();
+
 
 /* Insere randomicamente o mosquito na tela do jogo */
 function posicionaRandomico() {
@@ -20,7 +35,7 @@ function posicionaRandomico() {
 
         document.getElementById('mosquito').remove();
 
-        if (vidas > 3) {
+        if (vidas > 2) {
             window.location.href = 'fim_do_jogo.html';
         } else {
             document.getElementById('v' + vidas).src = 'imagens/coracao_vazio.png';
@@ -43,6 +58,10 @@ function posicionaRandomico() {
     mosquito.style.position = "absolute";
     mosquito.id = 'mosquito';
     mosquito.onclick = function() {
+        pontuacao++;
+        document.getElementById('cronometro').innerHTML = pontuacao;
+        var killMosquito = document.getElementById('clicouMosquito');
+        killMosquito.play();
         this.remove();
     };
 
@@ -73,3 +92,8 @@ function ladoMosquito() {
     var giraMosquito = Math.floor(Math.random() * 2);
     return giraMosquito ? 'ladoA' : 'ladoB';
 }
+
+/*function tocaMusicaGame() {
+    var musica = document.getElementById('musicaGame');
+    musica.play();
+}*/
